@@ -394,10 +394,8 @@ private extension CPLoadingView {
     @objc func hiddenLoadingView() {
         status = .completion
         isHidden = true
-        
-        if completionBlock != nil {
-            completionBlock!()
-        }
+
+        completionBlock?()
     }
 }
 
@@ -408,9 +406,7 @@ extension CPLoadingView: CAAnimationDelegate {
             Timer.scheduledTimer(timeInterval: kCPHidesWhenCompletedDelay, target: self, selector: #selector(CPLoadingView.hiddenLoadingView), userInfo: nil, repeats: false)
         } else {
             status = .completion
-            if completionBlock != nil {
-                completionBlock!()
-            }
+            completionBlock?()
         }
     }
 }
