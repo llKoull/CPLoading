@@ -11,7 +11,6 @@ import UIKit
 private let kCPRingStrokeAnimationKey = "CPLoading.stroke"
 private let kCPRingRotationAnimationKey = "CPLoading.rotation"
 private let kCPCompletionAnimationDuration: TimeInterval = 0.3
-private let kCPHidesWhenCompletedDelay: TimeInterval = 0.5
 
 public typealias CompletionBlock = () -> Void
 
@@ -45,8 +44,8 @@ public class CPLoadingView : UIView {
     }
     
     public var hidesWhenCompleted: Bool = false
-    
-    public var hidesAfterTime: TimeInterval = kCPHidesWhenCompletedDelay
+
+    public var hidesAfterTime: TimeInterval = 0.5
     
     public private(set) var status: ProgressStatus = .unknown
     
@@ -403,7 +402,7 @@ private extension CPLoadingView {
 extension CPLoadingView: CAAnimationDelegate {
     public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         if hidesWhenCompleted {
-            Timer.scheduledTimer(timeInterval: kCPHidesWhenCompletedDelay, target: self, selector: #selector(CPLoadingView.hiddenLoadingView), userInfo: nil, repeats: false)
+            Timer.scheduledTimer(timeInterval: hidesAfterTime, target: self, selector: #selector(CPLoadingView.hiddenLoadingView), userInfo: nil, repeats: false)
         } else {
             status = .completion
             completionBlock?()
