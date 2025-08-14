@@ -39,13 +39,19 @@ class ViewController: UIViewController {
     }
     
     @IBAction func switchValueChanged(_ sender: AnyObject) {
-        let switchCtr = sender as! UISwitch
+        guard let switchCtr = sender as? UISwitch else {
+            // Unable to cast sender to UISwitch
+            return
+        }
         loadingView.hidesWhenCompleted = switchCtr.isOn
     }
     
     @IBAction func changeLineWith(_ sender: AnyObject) {
         if loadingView.status == .loading {
-            let slider = sender as! UISlider
+            guard let slider = sender as? UISlider else {
+                // Unable to cast sender to UISlider
+                return
+            }
             loadingView.lineWidth = CGFloat(slider.value)
         } else {
             self.slider.value = Float(loadingView.lineWidth)
