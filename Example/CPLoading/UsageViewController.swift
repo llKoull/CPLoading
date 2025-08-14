@@ -57,9 +57,10 @@ class UsageViewController: UIViewController, URLSessionDownloadDelegate {
         
         loadingView.startLoading()
         
-        let url = URL(string: "http://imgsrc.baidu.com/forum/pic/item/a71ea8d3fd1f4134854c9235251f95cad1c85e05.jpg")
-        
-        let dataTask = dataSession.dataTask(with: url!, completionHandler: { (data, response, error) -> Void in
+        guard let url = URL(string: "https://imgsrc.baidu.com/forum/pic/item/a71ea8d3fd1f4134854c9235251f95cad1c85e05.jpg") else { return }
+
+        let dataTask = dataSession.dataTask(with: url, completionHandler: { [weak self] (data, response, error) -> Void in
+            guard let self = self else { return }
             if let imageData = data , error == nil {
                 let image = UIImage(data: imageData)
                 self.imageView.image = image
@@ -67,9 +68,9 @@ class UsageViewController: UIViewController, URLSessionDownloadDelegate {
             } else {
                 self.loadingView.completeLoading(success: false)
             }
-            
+
             self.resetButton.isEnabled = true
-        }) 
+        })
         
         dataTask.resume()
     }
@@ -81,9 +82,9 @@ class UsageViewController: UIViewController, URLSessionDownloadDelegate {
         
         loadingView.startLoading()
     
-        let url = URL(string: "http://img2.niutuku.com/desk/1208/1400/ntk-1400-9953.jpg")
-        
-        let downloadTask = downloadSession.downloadTask(with: url!)
+        guard let url = URL(string: "https://img2.niutuku.com/desk/1208/1400/ntk-1400-9953.jpg") else { return }
+
+        let downloadTask = downloadSession.downloadTask(with: url)
         downloadTask.resume()
     }
     
