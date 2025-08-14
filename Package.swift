@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
     name: "CPLoadingView",
     platforms: [
-        .iOS(.v8)
+        .iOS(.v15)
     ],
     products: [
         .library(
