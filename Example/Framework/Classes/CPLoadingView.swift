@@ -78,9 +78,9 @@ public class CPLoadingView : UIView {
         }
     }
     
-    private let progressLayer: CAShapeLayer! = CAShapeLayer()
-    private let shapeLayer: CAShapeLayer! = CAShapeLayer()
-    private let progressLabel: UILabel! = UILabel()
+    private let progressLayer: CAShapeLayer = CAShapeLayer()
+    private let shapeLayer: CAShapeLayer = CAShapeLayer()
+    private let progressLabel: UILabel = UILabel()
     
     private var completionBlock: CompletionBlock?
     
