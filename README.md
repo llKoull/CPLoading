@@ -36,6 +36,19 @@ Then import library module like so:
 import CPLoadingView
 ```
 
+### Swift Package Manager
+
+CPLoadingView also supports [Swift Package Manager](https://swift.org/package-manager/). To use it, add the
+following dependency to your `Package.swift`:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/cp3hnu/CPLoading.git", from: "2.0.1")
+]
+```
+
+Then include `CPLoadingView` in the target dependencies of any module that needs it.
+
 ## Properties
 
 ``` swift
